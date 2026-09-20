@@ -1,9 +1,24 @@
 import random
 
-print("1-100 arasında sayı tahmin etme oyunu: ")
+print("Sayı tahmin etme oyunu: ")
 
 while True:
-    secret = random.randint(1,100)
+    while True:
+        zorluk = input("Lütfen zorluk seçimi yapınız: (k/n/z): ").lower()
+
+        if zorluk == "k" or zorluk == "n" or zorluk == "z":
+            break
+        else:
+            print("Lütfen geçerli değer giriniz.")
+    if zorluk == "k":
+        max_number = 50
+    elif zorluk == "n":
+        max_number = 100
+    elif zorluk == "z":
+        max_number = 500
+
+    print(f"1-{max_number} arasında sayı tahmin ediniz: ")
+    secret = random.randint(1,max_number)
     guess_counter = 0
     
     while True:
@@ -13,7 +28,7 @@ while True:
             print("Lütfen sayı giriniz")
             continue
 
-        if guess < 1 or guess > 100:
+        if guess < 1 or guess > max_number:
             print("Lütfen geçerli bir değer giriniz.")
             continue
 
