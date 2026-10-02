@@ -16,12 +16,40 @@ def result(user_choice, computer_choice):
         return "Kaybettiniz"
 
 
-choices = ["taş", "kağıt", "makas"]
+def ask_replay():
+    while True:
+        replay = input("Tekrar oynamak ister misiniz (e/h): ").strip().lower()
 
-computer_choice = random.choice(choices)
+        if replay == "e":
+            return True
+        elif replay == "h":
+            return False
+        else:
+            print("Lütfen e veya h giriniz.")
 
-user_choice = input("Seçiminizi giriniz: ").strip().lower()
 
-game_result = result(user_choice, computer_choice)
-print(f"rakibin seçimi: {computer_choice}")
-print(game_result)
+def main():
+    
+    choices = ["taş", "kağıt", "makas"]   
+    while True:
+
+        computer_choice = random.choice(choices)
+
+        while True:
+            user_choice = input("Seçiminizi giriniz: ").strip().lower()
+
+            if user_choice not in choices:
+                print("lütfen taş, kağıt yada makas yazın")
+                continue
+            break
+
+        game_result = result(user_choice, computer_choice)
+        print(f"rakibin seçimi: {computer_choice}")
+        print(game_result)
+
+        if not ask_replay():
+            break
+
+
+if __name__ == "__main__":
+    main()
